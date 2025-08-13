@@ -3,66 +3,57 @@ export interface User {
   email: string
   name: string
   avatar?: string
-  role: "user" | "admin"
+  role: "admin" | "user" | "developer"
   createdAt: Date
   updatedAt: Date
-}
-
-export interface CortexItem {
-  id: string
-  title: string
-  content: string
-  type: "document" | "code" | "image" | "link" | "note"
-  keywords: string[]
-  writer: string
-  createdAt: Date
-  updatedAt: Date
-  size?: string
-  url?: string
-  cortexId?: string
-}
-
-export interface Cortex {
-  id: string
-  name: string
-  description?: string
-  color?: string
-  icon?: string
-  itemCount: number
-  createdAt: Date
-  updatedAt: Date
-  category: "private" | "shared" | "team"
 }
 
 export interface Project {
   id: string
   name: string
-  description?: string
-  status: "planning" | "in-progress" | "review" | "completed"
-  priority: "low" | "medium" | "high"
-  dueDate?: Date
-  assignees: string[]
+  description: string
+  status: "active" | "completed" | "paused" | "archived"
+  priority: "low" | "medium" | "high" | "urgent"
+  progress: number
+  startDate: Date
+  endDate?: Date
   tags: string[]
+  team: User[]
+  createdBy: string
   createdAt: Date
   updatedAt: Date
 }
 
-export interface SearchResult {
+export interface Workflow {
   id: string
-  title: string
-  content: string
-  type: string
-  relevance: number
-  source: string
-  url?: string
+  name: string
+  description: string
+  steps: WorkflowStep[]
+  status: "draft" | "active" | "paused" | "completed"
+  projectId?: string
+  createdBy: string
+  createdAt: Date
+  updatedAt: Date
+}
+
+export interface WorkflowStep {
+  id: string
+  name: string
+  description: string
+  type: "manual" | "automated" | "approval"
+  status: "pending" | "in_progress" | "completed" | "failed"
+  assignedTo?: string
+  dueDate?: Date
+  dependencies: string[]
+  metadata: Record<string, any>
 }
 
 export interface ChatMessage {
   id: string
   content: string
-  role: "user" | "assistant"
+  role: "user" | "assistant" | "system"
   timestamp: Date
-  sources?: SearchResult[]
+  metadata?: Record<string, any>
 }
 
 export interface ChatSession {
@@ -71,4 +62,41 @@ export interface ChatSession {
   messages: ChatMessage[]
   createdAt: Date
   updatedAt: Date
+}
+
+export interface CortexItem {
+  id: string
+  name: string
+  type: "project" | "workflow" | "document" | "code" | "design"
+  status: string
+  priority: "low" | "medium" | "high" | "urgent"
+  tags: string[]
+  createdAt: Date
+  updatedAt: Date
+  metadata: Record<string, any>
+}
+
+export interface ApiResponse<T> {
+  data: T
+  message: string
+  success: boolean
+  timestamp: Date
+}
+
+export interface PaginatedResponse<T> extends ApiResponse<T[]> {
+  pagination: {
+    page: number
+    limit: number
+    total: number
+    totalPages: number
+  }
+}
+
+export type Theme = "light" | "dark" | "system"
+
+export interface AppSettings {
+  theme: Theme
+  notifications: boolean
+  autoSave: boolean
+  language: string
 }

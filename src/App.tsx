@@ -1,144 +1,47 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { AuthProvider } from "@/contexts/AuthContext";
-import { ThemeProvider } from "@/contexts/ThemeContext";
-import Index from "./pages/Index";
-import WhyPage from "./pages/WhyPage";
-import HowPage from "./pages/HowPage";
-import NotFound from "./pages/NotFound";
-import Profile from "./pages/Profile";
-import Import from "./pages/Import";
-import SearchPage from "./pages/SearchPage";
-import Settings from "./pages/Settings";
-import ManagePage from "./pages/ManagePage";
-import WorkflowsPage from "./pages/WorkflowsPage";
-import Navbar from "./components/Navbar";
+"use client"
 
-const queryClient = new QueryClient();
+import { Routes, Route } from "react-router-dom"
+import { AnimatePresence } from "framer-motion"
+import { useAuth } from "@/contexts/AuthContext"
+import { Navbar } from "@/components/Navbar"
+import { LoadingScreen } from "@/components/landing/LoadingScreen"
+import Index from "@/pages/Index"
+import SearchPage from "@/pages/SearchPage"
+import ManagePage from "@/pages/ManagePage"
+import WorkflowsPage from "@/pages/WorkflowsPage"
+import Profile from "@/pages/Profile"
+import Settings from "@/pages/Settings"
+import Import from "@/pages/Import"
+import HowPage from "@/pages/HowPage"
+import WhyPage from "@/pages/WhyPage"
+import NotFound from "@/pages/NotFound"
 
-// Page transition wrapper
-const PageTransition = ({ children }: { children: React.ReactNode }) => {
-  const location = useLocation();
-  
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
-  
+function App() {
+  const { isLoading } = useAuth()
+
+  if (isLoading) {
+    return <LoadingScreen />
+  }
+
   return (
-    <div className="transition-opacity duration-300 animate-fade-in">
-      {children}
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <AnimatePresence mode="wait">
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/manage" element={<ManagePage />} />
+          <Route path="/workflows" element={<WorkflowsPage />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/import" element={<Import />} />
+          <Route path="/how" element={<HowPage />} />
+          <Route path="/why" element={<WhyPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </AnimatePresence>
     </div>
-  );
-};
+  )
+}
 
-const AppRoutes = () => {
-  return (
-    <Routes>
-      <Route 
-        path="/" 
-        element={
-          <PageTransition>
-            <Index />
-          </PageTransition>
-        } 
-      />
-      <Route 
-        path="/why" 
-        element={
-          <PageTransition>
-            <WhyPage />
-          </PageTransition>
-        } 
-      />
-      <Route 
-        path="/how" 
-        element={
-          <PageTransition>
-            <HowPage />
-          </PageTransition>
-        } 
-      />
-      <Route 
-        path="/manage" 
-        element={
-          <PageTransition>
-            <ManagePage />
-          </PageTransition>
-        } 
-      />
-      <Route 
-        path="/profile" 
-        element={
-          <PageTransition>
-            <Profile />
-          </PageTransition>
-        } 
-      />
-      <Route 
-        path="/import" 
-        element={
-          <PageTransition>
-            <Import />
-          </PageTransition>
-        } 
-      />
-      <Route 
-        path="/search" 
-        element={
-          <PageTransition>
-            <SearchPage />
-          </PageTransition>
-        } 
-      />
-      <Route 
-        path="/settings" 
-        element={
-          <PageTransition>
-            <Settings />
-          </PageTransition>
-        } 
-      />
-      <Route 
-        path="/workflows" 
-        element={
-          <PageTransition>
-            <WorkflowsPage />
-          </PageTransition>
-        } 
-      />
-      <Route 
-        path="*" 
-        element={
-          <PageTransition>
-            <NotFound />
-          </PageTransition>
-        } 
-      />
-    </Routes>
-  );
-};
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
-      <AuthProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <div className="min-h-screen">
-              <Navbar />
-              <AppRoutes />
-            </div>
-          </BrowserRouter>
-        </TooltipProvider>
-      </AuthProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
-);
-
-export default App;
+export default App

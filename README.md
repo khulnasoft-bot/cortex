@@ -1,37 +1,31 @@
-# CortexDev
+# CortexDev - AI-Powered Development Platform
 
-A modern AI-powered development platform built with React, TypeScript, and Vite.
+Transform your development workflow with AI-powered tools, intelligent search, and seamless project management.
 
-## Features
+## 🚀 Features
 
-- 🧠 **AI-Powered Search**: Intelligent search across your development resources
-- 📊 **Project Management**: Kanban-style project tracking and management
-- 🔄 **Workflow Automation**: Create and manage custom development workflows
-- 🎨 **Modern UI**: Built with shadcn/ui and Tailwind CSS
-- 🌙 **Dark Mode**: Full dark mode support
-- 📱 **Responsive**: Mobile-first responsive design
+- **AI-Powered Search**: Intelligent code and project search capabilities
+- **Project Management**: Comprehensive project tracking and management
+- **Workflow Automation**: Streamlined development workflows
+- **Real-time Collaboration**: Team collaboration tools
+- **Dark/Light Theme**: Beautiful UI with theme switching
+- **Responsive Design**: Works perfectly on all devices
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 - **Frontend**: React 18, TypeScript, Vite
 - **Styling**: Tailwind CSS, shadcn/ui
-- **Routing**: React Router DOM
-- **State Management**: TanStack Query
+- **Routing**: React Router v6
+- **State Management**: React Query, Context API
+- **Animations**: Framer Motion
 - **Icons**: Lucide React
 - **Build Tool**: Vite
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+ 
-- npm or yarn
-
-### Installation
+## 📦 Installation
 
 1. Clone the repository:
 \`\`\`bash
-git clone <repository-url>
+git clone https://github.com/yourusername/cortexdev.git
 cd cortexdev
 \`\`\`
 
@@ -47,39 +41,82 @@ npm run dev
 
 4. Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-## Available Scripts
+## 🏗️ Build for Production
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+\`\`\`bash
+npm run build
+\`\`\`
 
-## Project Structure
+## 🚀 Deploy to Vercel
+
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Deploy with one click!
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/cortexdev)
+
+## 📁 Project Structure
 
 \`\`\`
 src/
 ├── components/          # Reusable UI components
 │   ├── ui/             # shadcn/ui components
 │   ├── landing/        # Landing page components
-│   ├── manage/         # Management interface components
-│   ├── search/         # Search functionality components
-│   └── workflows/      # Workflow management components
+│   ├── manage/         # Management interface
+│   ├── search/         # Search functionality
+│   └── workflows/      # Workflow components
 ├── contexts/           # React contexts
 ├── hooks/              # Custom React hooks
-├── lib/                # Utility functions and configurations
+├── lib/                # Utility functions and types
 ├── pages/              # Page components
 ├── types/              # TypeScript type definitions
-└── utils/              # Utility functions
+└── utils/              # Helper utilities
 \`\`\`
 
-## Contributing
+## 🎨 Customization
+
+The project uses Tailwind CSS with custom CSS variables for theming. You can customize colors, spacing, and other design tokens in:
+
+- `tailwind.config.ts` - Tailwind configuration
+- `src/index.css` - CSS variables and custom styles
+
+## 📱 Responsive Design
+
+The application is built with a mobile-first approach and works seamlessly across:
+
+- 📱 Mobile devices (320px+)
+- 📱 Tablets (768px+)
+- 💻 Desktop (1024px+)
+- 🖥️ Large screens (1440px+)
+
+## 🔧 Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+\`\`\`env
+VITE_APP_TITLE=CortexDev
+VITE_API_URL=https://api.cortexdev.com
+\`\`\`
+
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/new-feature`
-3. Commit your changes: `git commit -am 'Add new feature'`
-4. Push to the branch: `git push origin feature/new-feature`
-5. Submit a pull request
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
 
-## License
+## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [shadcn/ui](https://ui.shadcn.com/) for the beautiful UI components
+- [Tailwind CSS](https://tailwindcss.com/) for the utility-first CSS framework
+- [Lucide](https://lucide.dev/) for the icon library
+- [Framer Motion](https://www.framer.com/motion/) for animations
+
+---
+
+Built with ❤️ by the CortexDev team
